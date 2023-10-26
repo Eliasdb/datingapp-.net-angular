@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "client": {
+    "client2": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,18 +13,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/client",
+            "outputPath": "dist/client2",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/font-awesome/css/font-awesome.min.css",
-              "src/styles.css"
-            ],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -55,18 +50,13 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          // "options": {
-          //   "ssl": true,
-          //   "sslCert": "./ssl/localhost.pem",
-          //   "sslKey": "./ssl/localhost-key.pem"
-          // },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "client:build:production"
+              "browserTarget": "client2:build:production"
             },
             "development": {
-              "browserTarget": "client:build:development"
+              "browserTarget": "client2:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +64,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "client:build"
+            "browserTarget": "client2:build"
           }
         },
         "test": {
