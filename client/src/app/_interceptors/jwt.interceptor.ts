@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-} from "@angular/common/http";
-import { Observable, take } from "rxjs";
-import { AccountService } from "../_services/account.service";
+} from '@angular/common/http';
+import { Observable, take } from 'rxjs';
+import { AccountService } from '../_services/account.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor(private accountService: AccountService) {}
+  private accountService = inject(AccountService);
 
   intercept(
     request: HttpRequest<unknown>,
@@ -27,7 +27,6 @@ export class JwtInterceptor implements HttpInterceptor {
         }
       },
     });
-
     return next.handle(request);
   }
 }
