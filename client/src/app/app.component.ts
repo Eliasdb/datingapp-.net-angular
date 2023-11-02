@@ -1,14 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { AccountService } from "./_services/account.service";
-import { User } from "./_models/user";
+import { Component, OnInit } from '@angular/core';
+import { AccountService } from './_services/account.service';
+import { User } from './_models/user';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  template: `
+    <app-nav />
+
+    <div class="container" style="margin-top: 100px">
+      <router-outlet></router-outlet>
+    </div>
+  `,
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = "Dating app";
+  title = 'Dating app';
 
   constructor(private accountService: AccountService) {}
 
@@ -17,10 +23,9 @@ export class AppComponent implements OnInit {
   }
 
   setCurrentUser() {
-    const userString = localStorage.getItem("user");
+    const userString = localStorage.getItem('user');
     if (!userString) return;
     const user: User = JSON.parse(userString);
     this.accountService.setCurrentUser(user);
-    // console.log(user);
   }
 }

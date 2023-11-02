@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-lists',
-  templateUrl: './lists.component.html',
-  styleUrls: ['./lists.component.css']
+  template: ` <p>lists works!</p> `,
+  styleUrls: ['./lists.component.css'],
 })
-export class ListsComponent {
-
-}
+export class ListsComponent {}

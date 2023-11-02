@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css']
+  template: ` <p>messages works!</p> `,
+  styleUrls: ['./messages.component.css'],
 })
-export class MessagesComponent {
-
-}
+export class MessagesComponent {}
