@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
 import { MemberCardComponent } from '../member-card/member-card.component';
@@ -18,9 +18,9 @@ import { MemberCardComponent } from '../member-card/member-card.component';
   styleUrls: ['./members-list.component.css'],
 })
 export class MembersListComponent implements OnInit {
+  private memberService = inject(MembersService);
   members: Member[] = [];
 
-  constructor(private memberService: MembersService) {}
   ngOnInit(): void {
     this.loadMembers();
   }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -36,8 +36,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./server-error.component.css'],
 })
 export class ServerErrorComponent {
+  private router = inject(Router);
   error: any;
-  constructor(private router: Router) {
+
+  constructor() {
     const navigation = this.router.getCurrentNavigation();
     this.error = navigation?.extras?.state?.['error'];
   }

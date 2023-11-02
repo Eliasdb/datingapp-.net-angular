@@ -44,10 +44,6 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   `,
   styleUrls: ['./member-card.component.css'],
 })
-export class MemberCardComponent implements OnInit {
+export class MemberCardComponent {
   @Input() member: Member | undefined;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

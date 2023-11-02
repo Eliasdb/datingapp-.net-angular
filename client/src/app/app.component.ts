@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AccountService } from './_services/account.service';
 import { User } from './_models/user';
 
@@ -6,7 +6,6 @@ import { User } from './_models/user';
   selector: 'app-root',
   template: `
     <app-nav />
-
     <div class="container" style="margin-top: 100px">
       <router-outlet></router-outlet>
     </div>
@@ -15,8 +14,7 @@ import { User } from './_models/user';
 })
 export class AppComponent implements OnInit {
   title = 'Dating app';
-
-  constructor(private accountService: AccountService) {}
+  private accountService = inject(AccountService);
 
   ngOnInit(): void {
     this.setCurrentUser();

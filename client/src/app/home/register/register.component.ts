@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { AccountService } from '../../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
@@ -45,12 +45,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
-  model: any = {};
 
-  constructor(
-    private accountService: AccountService,
-    private toastr: ToastrService
-  ) {}
+  private accountService = inject(AccountService);
+  private toastr = inject(ToastrService);
+
+  model: any = {};
 
   ngOnInit(): void {}
 

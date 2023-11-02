@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from 'src/app/_models/member';
 import { SharedModule } from 'src/app/_modules/shared.module';
@@ -74,12 +74,9 @@ import { MembersService } from 'src/app/_services/members.service';
   styleUrls: ['./member-detail.component.css'],
 })
 export class MembersDetailComponent implements OnInit {
+  private memberService = inject(MembersService);
+  private route = inject(ActivatedRoute);
   member: Member | undefined;
-
-  constructor(
-    private memberService: MembersService,
-    private route: ActivatedRoute
-  ) {}
 
   ngOnInit(): void {
     this.loadMember();

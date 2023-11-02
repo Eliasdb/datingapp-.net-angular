@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   standalone: true,
@@ -39,10 +40,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./test-error.component.css'],
 })
 export class TestErrorComponent implements OnInit {
-  baseURL = 'http://localhost:5000/api/';
+  private http = inject(HttpClient);
+  baseURL = environment.apiUrl;
   validationErrors: string[] = [];
-
-  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
 

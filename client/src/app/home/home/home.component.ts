@@ -37,12 +37,8 @@ import { RegisterComponent } from '../register/register.component';
   `,
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   registerMode = false;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   registerToggle() {
     this.registerMode = !this.registerMode;
