@@ -1,6 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, RegisterComponent],
   selector: 'app-home',
   template: `
     <div class="container mt-5">

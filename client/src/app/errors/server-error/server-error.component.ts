@@ -1,7 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   selector: 'app-server-error',
   template: `
     <h4>Internal server error</h4>

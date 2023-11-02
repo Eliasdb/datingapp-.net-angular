@@ -1,8 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
+import { MemberCardComponent } from '../member-card/member-card.component';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, MemberCardComponent],
   selector: 'app-members-list',
   template: `
     <div class="row">

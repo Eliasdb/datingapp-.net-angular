@@ -1,7 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Member } from 'src/app/_models/member';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   selector: 'app-member-card',
   template: `
     <div class="card mb-4" *ngIf="member">
@@ -13,10 +17,7 @@ import { Member } from 'src/app/_models/member';
         />
         <ul class="list-inline member-icons animate text-center">
           <li class="list-inline-item">
-            <button
-              routerLink="/members/{{ member.userName }}"
-              class="btn btn-primary"
-            >
+            <button class="btn btn-primary">
               <i class="fa fa-user"></i>
             </button>
           </li>
