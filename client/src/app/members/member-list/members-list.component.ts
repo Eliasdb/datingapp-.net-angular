@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Member } from 'src/app/_models/member';
-import { MembersService } from 'src/app/_services/members.service';
+import { MemberService } from 'src/app/_services/member.service';
 import { MemberCardComponent } from '../member-card/member-card.component';
+import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -10,7 +11,7 @@ import { MemberCardComponent } from '../member-card/member-card.component';
   selector: 'app-members-list',
   template: `
     <div class="row">
-      <div *ngFor="let member of members" class="col-2">
+      <div *ngFor="let member of members$ | async" class="col-2">
         <app-member-card [member]="member"></app-member-card>
       </div>
     </div>
@@ -18,16 +19,10 @@ import { MemberCardComponent } from '../member-card/member-card.component';
   styleUrls: ['./members-list.component.css'],
 })
 export class MembersListComponent implements OnInit {
-  private memberService = inject(MembersService);
-  members: Member[] = [];
+  private memberService = inject(MemberService);
+  members$: Observable<Member[]> | undefined;
 
   ngOnInit(): void {
-    this.loadMembers();
-  }
-
-  loadMembers() {
-    this.memberService.getMembers().subscribe({
-      next: (members) => (this.members = members),
-    });
+    this.members$ = this.memberService.getMembers();
   }
 }

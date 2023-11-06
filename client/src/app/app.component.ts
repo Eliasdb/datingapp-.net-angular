@@ -5,6 +5,7 @@ import { User } from './_models/user';
 @Component({
   selector: 'app-root',
   template: `
+    <ngx-spinner type="line-scale-party">Loading...</ngx-spinner>
     <app-nav />
     <div class="container" style="margin-top: 100px">
       <router-outlet></router-outlet>

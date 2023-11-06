@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
-import { SharedModule } from '../_modules/shared.module';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, AppRoutingModule, SharedModule],
+  imports: [CommonModule, FormsModule, AppRoutingModule, BsDropdownModule],
   selector: 'app-nav',
   template: `
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -53,7 +53,7 @@ import { SharedModule } from '../_modules/shared.module';
             >Welcome {{ user.username | titlecase }}</a
           >
           <div class="dropdown-menu" *dropdownMenu>
-            <a class="dropdown-item">Edit profile</a>
+            <a class="dropdown-item" routerLink="/member/edit">Edit profile</a>
             <a class="dropdown-item" (click)="logout()">Logout</a>
           </div>
         </div>

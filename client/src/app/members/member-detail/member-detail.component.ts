@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { Member } from 'src/app/_models/member';
-import { SharedModule } from 'src/app/_modules/shared.module';
-import { MembersService } from 'src/app/_services/members.service';
+import { MemberService } from 'src/app/_services/member.service';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, TabsModule, GalleryModule],
   selector: 'app-members-detail',
   template: `
     <div class="row" *ngIf="member">
@@ -57,12 +58,13 @@ import { MembersService } from 'src/app/_services/members.service';
             <h4>Interests</h4>
             <p>{{ member.interests }}</p>
           </tab>
-          <tab heading="Photos">
-            <!-- <ngx-gallery
-          [options]="galleryOptions"
-          [images]="galleryImages"
-          style="display: inline-block; margin-bottom: 20px"
-        ></ngx-gallery> -->
+          <tab heading="Photos" #photoTab="tab">
+            <gallery
+              *ngIf="photoTab.active"
+              [items]="images"
+              class="gallery"
+              thumbPosition="left"
+            ></gallery>
           </tab>
           <tab heading="Messages">
             <p>Messages will go here</p>
@@ -74,9 +76,10 @@ import { MembersService } from 'src/app/_services/members.service';
   styleUrls: ['./member-detail.component.css'],
 })
 export class MembersDetailComponent implements OnInit {
-  private memberService = inject(MembersService);
+  private memberService = inject(MemberService);
   private route = inject(ActivatedRoute);
   member: Member | undefined;
+  images: GalleryItem[] = [];
 
   ngOnInit(): void {
     this.loadMember();
@@ -86,7 +89,17 @@ export class MembersDetailComponent implements OnInit {
     var username = this.route.snapshot.paramMap.get('username');
     if (!username) return;
     this.memberService.getMember(username).subscribe({
-      next: (member) => (this.member = member),
+      next: (member) => {
+        this.member = member;
+        this.getImages();
+      },
     });
+  }
+
+  getImages() {
+    if (!this.member) return;
+    for (const photo of this.member?.photos) {
+      this.images.push(new ImageItem({ src: photo.url, thumb: photo.url }));
+    }
   }
 }
